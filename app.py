@@ -64,7 +64,7 @@ def playlists_edit(playlist_id):
     playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
     return render_template('playlists_edit.html', playlist=playlist, title='Edit Playlist')
 
-@app.route('playlists/<playlist_id', methods=['POST'])
+@app.route('/playlists/<playlist_id>', methods=['POST'])
 def playlists_update(playlist_id):
     """Submit an edited playlist."""
     updated_playlist = {

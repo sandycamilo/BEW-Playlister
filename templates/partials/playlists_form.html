@@ -11,16 +11,17 @@
 <!-- DESCRIPTION -->
 <p>
     <label for='description'>Description</label><br>
-    <input id='description' type='text' name='description' value='{{ 'playlist.description }}/>
+    <input id='description' type='text' name='description' value='{{ playlist.description }}' />
 </p>
 
 <!-- VIDEO LINKS-->
 <p>
     <label for='playlist-videos'>Videos</label><br>
-    <p>Add videos in the form of 'https://youtube.com/edbed/KEY.Separate with a new line.</p>
-    <textarea id='playlist-videos' name='videos' rows='10'>{{ "\n".join(playlist.videos) }}</p></textarea>
+    <p>Add videos in the form of 'https://youtube.com/edbed/KEY. Separate with a new line.</p>
+    <textarea id='playlist-videos' name='videos' rows='10' />{{ "\n".join(playlist.videos) }}</p></textarea>
 </p>
 </fieldset>
+
 <!-- BUTTON -->
 <p>
     <button type= 'submit'>Save Playlist</button>

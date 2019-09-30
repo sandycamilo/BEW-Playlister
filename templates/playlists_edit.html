@@ -14,9 +14,15 @@
 
         <!-- DESCRIPTION -->
         <p>
+            <label for='description'>Description</label><br>
+            <input id='description' type='text' name='description' value='{{ playlist.decription }}' />
+        </p>
+
+        <!-- VIDEO LINKS -->
+        <p>
             <label for ='playlist-videos'>Videos</label><br>
             <p>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a new line.</p>
-            <textarea id='playlist-videos' name='videos' rows='10' >{{ "\n".join(playlist.videos) }}</textarea>
+            <textarea id='playlist-videos' name='videos' rows='10' />{{ "\n".join(playlist.videos) }}</textarea>
         </p>
     </fieldset>
 
