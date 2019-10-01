@@ -3,46 +3,13 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os 
 
-
-client = MongoClient()
-db = client.Playlister
-playlists = db.playlists
-
-
-app = Flask(__name__)
-# if __name__ == '__main__':
-#     app.run(debug=True, host= '0.0.0.0', port=os.environ.get('PORT', 5000))
-
 host= os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 playlists = db.playlists
 
-if __name__ == '__main__':
-    app.run(debug=True, host= '0.0.0.0', port=os.environ.get('PORT', 5000))
+app = Flask(__name__)
 
-
-# app = Flask(__name__)
-
-# @app.route('/')
-# def index():
-#     """Return homepage"""
-#     # return render_template('home.html', msg= 'Flask is Cool!!')
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
-## OUR MOCK ARRAY OF PROJECTS
-# playlists = [
-#     { 'title': 'Cat videos', 'description': 'Cats acting weird' },
-#     { 'title': '80\'s Music', 'description': 'Don\'t stop believing!' },
-#     { 'title': '90\'s Music', 'description': 'Creep'},
-#     { 'title': '60\'s Music', 'description': 'Wild Thing'},
-#     { 'title': '50\'s Music', 'description': 'Dream Lover'}
-# ]
-
-    
 @app.route('/')
 def playlists_index():
     """Show all playlists."""
@@ -69,7 +36,6 @@ def playlists_show(playlist_id):
     """Show a single playlist."""
     playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
     return render_template('playlists_show.html', playlist=playlist)
-    # return f'My ID is {playlist_id}'
 
 @app.route('/playlists/<playlist_id>/edit')
 def playlists_edit(playlist_id):
@@ -95,3 +61,6 @@ def playlists_delete(playlist_id):
     """Delete one playlist."""
     playlists.delete_one({'_id': ObjectId(playlist_id)})
     return redirect(url_for('playlists_index'))
+
+if __name__ == '__main__':
+    app.run(debug=True, host= '0.0.0.0', port=os.environ.get('PORT', 5000))
