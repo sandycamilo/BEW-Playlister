@@ -1,13 +1,28 @@
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import os 
 
 
 client = MongoClient()
 db = client.Playlister
 playlists = db.playlists
 
+
 app = Flask(__name__)
+# if __name__ == '__main__':
+#     app.run(debug=True, host= '0.0.0.0', port=os.environ.get('PORT', 5000))
+
+host= os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
+client = MongoClient(host=f'{host}?retryWrites=false')
+db = client.get_default_database()
+playlists = db.playlists
+
+if __name__ == '__main__':
+    app.run(debug=True, host= '0.0.0.0', port=os.environ.get('PORT', 5000))
+
+
+# app = Flask(__name__)
 
 # @app.route('/')
 # def index():
@@ -27,6 +42,7 @@ if __name__ == '__main__':
 #     { 'title': '50\'s Music', 'description': 'Dream Lover'}
 # ]
 
+    
 @app.route('/')
 def playlists_index():
     """Show all playlists."""
@@ -45,18 +61,15 @@ def playlists_submit():
         'description': request.form.get('description'),
         'videos': request.form.get('videos').split()
     }
-    # playlists.insert_one(playlist)
     playlist_id = playlists.insert_one(playlist).inserted_id
-    # print(request.form.to_dict())
-    # return redirect(url_for('playlists_index'))
     return redirect(url_for('playlists_show', playlist_id=playlist_id))
 
 @app.route('/playlists/<playlist_id>')
 def playlists_show(playlist_id):
     """Show a single playlist."""
-    # playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
-    # return render_template('playlists_show.html', playlist=playlist)
-    return f'My ID is {playlist_id}'
+    playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
+    return render_template('playlists_show.html', playlist=playlist)
+    # return f'My ID is {playlist_id}'
 
 @app.route('/playlists/<playlist_id>/edit')
 def playlists_edit(playlist_id):

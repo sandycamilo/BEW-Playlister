@@ -11,39 +11,39 @@
             <div class='form-group'>
                 <button class='btn btn-primary' type='submit'>Save Playlist</button>
             </div>
-            </form>
+        </form>
     </div>
 </div>
 {% endblock %}
 
-{% block content %}
-<form method='POST' action='/playlists/{{playlist.id}}'>
-    {% include 'partials/playlists_form.html' %}
-    <fieldset>
-        <legend>Edit Playlist</legend>
+<!-- {% block content %} --> 
+<!-- <form method='POST' action='/playlists/{{playlist.id}}'> -->
+    <!-- {% include 'partials/playlists_form.html' %} -->
+    <!-- <fieldset>
+        <legend>Edit Playlist</legend> -->
         <!-- TITLE -->
-        <p>
+        <!-- <p>
             <label for='playlists-title'>Title</label><br>
             <input id='playlist-title' type='text' name='title' value='{{ playlist.title }}'/>
-        </p>
+        </p> -->
 
         <!-- DESCRIPTION -->
-        <p>
+        <!-- <p>
             <label for='description'>Description</label><br>
             <input id='description' type='text' name='description' value='{{ playlist.decription }}' />
-        </p>
+        </p> -->
 
         <!-- VIDEO LINKS -->
-        <p>
+        <!-- <p>
             <label for ='playlist-videos'>Videos</label><br>
             <p>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a new line.</p>
             <textarea id='playlist-videos' name='videos' rows='10' />{{ "\n".join(playlist.videos) }}</textarea>
         </p>
-    </fieldset>
+    </fieldset> -->
 
     <!-- BUTTON -->
-    <P>
+    <!-- <P>
         <button type= 'submit'>Save Playlist</button>
-    </P>
-</form>
-{% endblock %}
+    </P> -->
+<!-- </form>
+{% endblock %} -->
