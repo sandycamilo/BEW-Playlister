@@ -19,10 +19,12 @@
 
         <!-- Comment form -->
         {% include 'partials/comment_form.html' %}
+        <hr>
 
         <!-- Show Comments -->
         {% for comment in comments %}
             {% incluide 'partials/comment.html' %}
+        {% endfor %}
         
     </div>
 </div>
