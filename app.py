@@ -29,7 +29,7 @@ def playlists_submit():
     playlist = {
         'title': request.form.get('title'),
         'description': request.form.get('description'),
-        'videos': request.form.get('videos').split()
+        'videos': request.form.get('videos').split(),
         'created_at': datetime.now()
     }
     playlist_id = playlists.insert_one(playlist).inserted_id
