@@ -1,6 +1,7 @@
 <!-- templates/playlists_show.html -->
+{% extends 'base.html' %}
 
-
+{% block content %}
 <a href='/'>Back to Home</a>
 <div class='row'>
     <div class='col-sm-6 col-sm-offset-3'>
@@ -26,8 +27,9 @@
 
         <!-- Show Comments -->
         {% for comment in comments %}
-            {% incluide 'partials/comment.html' %}
+            {% include 'partials/comment.html' %}
         {% endfor %}
 
     </div>
 </div>
+{% endblock %}
