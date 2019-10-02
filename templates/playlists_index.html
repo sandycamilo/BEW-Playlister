@@ -8,7 +8,7 @@
     <div class= 'card'>
     {% for playlist in playlists %}
         <div class='card-body'>
-            <h2><a href='/playlists/{{ playlist.id}}'>{{ playlist.title }}</a></h2>
+            <h2><a href='/playlists/{{ playlist._id}}'>{{ playlist.title }}</a></h2>
             <small>{{ playlist.description }}</small>
         </div>
     {% endfor %}
